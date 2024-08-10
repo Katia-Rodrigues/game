@@ -5,6 +5,7 @@ const timer = document.querySelector('.timer');
 const maxTime = 60; // Tempo máximo em segundos
 let timeRemaining = maxTime; // Tempo restante para completar o jogo
 let countdown; // Variável para armazenar o setInterval do tempo máximo
+let loop; // Variável para armazenar o setInterval do cronômetro
 
 const characters = [
   'Bart',
@@ -26,7 +27,6 @@ const createElement = (tag, className) => {
 
 let firstCard = null;
 let secondCard = null;
-let loop = null;
 
 const resetCards = () => {
   firstCard.classList.remove('reveal-card');
@@ -125,7 +125,20 @@ const startCountdown = () => {
   }, 1000);
 }
 
+// Função para iniciar o jogo
+const startGame = () => {
+  const playerName = localStorage.getItem('player');
+  if (playerName) {
+    spanPlayer.textContent = playerName;
+  } else {
+    spanPlayer.textContent = 'Jogador';
+  }
+  grid.innerHTML = ''; // Limpa o grid para o novo jogo
+  timeRemaining = maxTime; // Reinicia o tempo restante
+  startTimer();
+  startCountdown();
+  loadGame();
+}
+
 // Inicia o jogo
-loadGame();
-startTimer();
-startCountdown();
+startGame();

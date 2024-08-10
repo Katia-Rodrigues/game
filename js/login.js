@@ -20,7 +20,7 @@ const handleSubmit = (event) => {
   // Impede o envio padrão do formulário
   event.preventDefault();
 
-  // Armazena o valor do input no localStorage
+  // Armazena o nome do input no localStorage
   localStorage.setItem('player', input.value.trim());
   // Redireciona para a página do jogo
   window.location = 'pages/game.html';
